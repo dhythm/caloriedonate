@@ -13,10 +13,26 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // create instance for setting Tabs
+        let tabMain: UIViewController = mainViewController()
+        let tabMeal: UIViewController = mealViewController()
+        let tabExercise: UIViewController = exerciseViewController()
+        
+        let tabBar = NSArray(objects: tabMain, tabMeal, tabExercise)
+        let tabBarController: UITabBarController = UITabBarController()
+        
+        tabBarController.setViewControllers(tabBar as? [UIViewController
+            ], animated: false)
+        
+    
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window!.rootViewController = tabBarController
+        self.window!.makeKeyAndVisible()
+        
         return true
     }
 
