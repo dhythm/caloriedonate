@@ -2,11 +2,11 @@
 import Foundation
 import UIKit
 
-class exerciseViewController: UIViewController {
+class recordViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 3)
+        self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {

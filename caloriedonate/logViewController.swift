@@ -2,11 +2,11 @@
 import Foundation
 import UIKit
 
-class mealViewController: UIViewController {
-    
+class logViewController: UIViewController {
+
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 2)
+        self.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 3)
     }
     
     required init?(coder aDecoder: NSCoder) {

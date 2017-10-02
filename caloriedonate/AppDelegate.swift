@@ -14,20 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var _total: Int? = 1200
+    var _goal: Int?  = 1800
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         // create instance for setting Tabs
         let tabMain: UIViewController = mainViewController()
-        let tabMeal: UIViewController = mealViewController()
-        let tabExercise: UIViewController = exerciseViewController()
-        
-        let tabBar = NSArray(objects: tabMain, tabMeal, tabExercise)
+        let tabRecord: UIViewController = recordViewController()
+        let tabLog: UIViewController = logViewController()
+                
+        let tabBar = NSArray(objects: tabRecord, tabMain, tabLog)
         let tabBarController: UITabBarController = UITabBarController()
         
+
         tabBarController.setViewControllers(tabBar as? [UIViewController
             ], animated: false)
-        
+        tabBarController.selectedIndex = 1
     
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = tabBarController
