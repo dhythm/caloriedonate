@@ -1,9 +1,15 @@
 
 import Foundation
 import UIKit
+import CoreData
+
+import Charts
+import SwiftyJSON
 
 class logViewController: UIViewController {
 
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         self.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 3)

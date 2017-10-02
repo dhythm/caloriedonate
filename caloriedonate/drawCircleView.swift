@@ -9,8 +9,8 @@ class drawCircleView: UIView {
     var total: Int?
     var goal: Int?
     
-    var radius: CGFloat = 120
-    var circleWidth: CGFloat = 20.0
+    let radius: CGFloat = 120
+    let circleWidth: CGFloat = 20.0
     
     var ratio: Float?
     var ratioCircle: Float?

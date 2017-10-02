@@ -4,8 +4,8 @@ import UIKit
 
 class mainViewController: UIViewController {
     
-    var appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var today: [[String: String]] = []
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let today: [[String: String]] = []
     //let iconcamera: UIimage? = UIImage(named: "")
 
     var total: Int?
@@ -13,7 +13,7 @@ class mainViewController: UIViewController {
     var donate: Int?
     
     let cX: CGFloat = UIScreen.main.bounds.width/2
-    let cY: CGFloat = UIScreen.main.bounds.height/2
+    let cY: CGFloat = UIScreen.main.bounds.height/2.5
     
     func displayValue() {
         
