@@ -65,7 +65,7 @@ class mainViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+        self.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {

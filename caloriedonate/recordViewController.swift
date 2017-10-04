@@ -9,7 +9,7 @@ class recordViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 1)
+        self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 2)
     }
     
     required init?(coder aDecoder: NSCoder) {

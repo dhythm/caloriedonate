@@ -24,14 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabMain: UIViewController = mainViewController()
         let tabRecord: UIViewController = recordViewController()
         let tabLog: UIViewController = logViewController()
+        let tabSetting: UIViewController = settingViewController()
                 
-        let tabBar = NSArray(objects: tabRecord, tabMain, tabLog)
+        let tabBar = NSArray(objects: tabMain, tabRecord, tabLog, tabSetting)
         let tabBarController: UITabBarController = UITabBarController()
         
 
         tabBarController.setViewControllers(tabBar as? [UIViewController
             ], animated: false)
-        tabBarController.selectedIndex = 1
+        tabBarController.selectedIndex = 0
     
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = tabBarController
