@@ -18,5 +18,7 @@ extension WeightData {
 
     @NSManaged public var date: NSDate?
     @NSManaged public var weight: Float
-
+    @NSManaged public var created_at: NSDate?
+    @NSManaged public var updated_at: NSDate?
+    
 }

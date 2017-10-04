@@ -12,4 +12,10 @@ import CoreData
 @objc(WeightData)
 public class WeightData: NSManagedObject {
 
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.created_at = NSDate()
+        self.updated_at = NSDate()
+    }
+    
 }

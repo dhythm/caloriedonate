@@ -12,4 +12,10 @@ import CoreData
 @objc(ExerciseData)
 public class ExerciseData: NSManagedObject {
 
+    override public func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.created_at = NSDate()
+        self.updated_at = NSDate()
+    }
+    
 }

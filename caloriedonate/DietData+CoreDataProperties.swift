@@ -20,5 +20,7 @@ extension DietData {
     @NSManaged public var name: String?
     @NSManaged public var calorie: Float
     @NSManaged public var timezone: Int16
+    @NSManaged public var created_at: NSDate?
+    @NSManaged public var updated_at: NSDate?
 
 }
