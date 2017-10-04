@@ -17,8 +17,8 @@ class logViewController: UIViewController {
     // Height of ChartView
     let cHeight: CGFloat = 200
 
-    let days   = ["10/01","10/02","10/03","10/04","10/05"]
-    let weight = [72.0,71.2,71.6,70.2,70.4]
+    var days   = [String]()
+    var weight = [Double]()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -42,11 +42,37 @@ class logViewController: UIViewController {
 
         chartView = LineChartView(frame: CGRect(x: 0, y: sbHeight, width: UIScreen.main.bounds.width, height: cHeight))
 
+        self.view.addSubview(chartView)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // fetch record
+        let viewContext = self.appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<WeightData> = WeightData.fetchRequest()
+        do {
+            days.removeAll()
+            weight.removeAll()
+            let results = try viewContext.fetch(fetchRequest)
+            if let nilcheck = results.first!.date {
+                for i in 0 ..< results.count {
+                    let df = DateFormatter()
+                    df.dateFormat = "MM/dd"
+                    days.append(df.string(from: results[i].date! as Date))
+                    weight.append(Double(results[i].weight))
+                }
+            }
+        } catch {
+            fatalError("Failed to fetch data: \(error)")
+        }
+
         //
         chartView.backgroundColor = UIColor.white
         chartView.leftAxis.axisMinimum = weight.min()! * 0.85
         chartView.leftAxis.axisMaximum = weight.max()! * 1.15
-        
+
         //
         chartView.legend.enabled = false
         chartView.pinchZoomEnabled = false
@@ -61,7 +87,7 @@ class logViewController: UIViewController {
         chartView.rightAxis.drawGridLinesEnabled = false
         chartView.xAxis.drawGridLinesEnabled     = false
         chartView.xAxis.labelPosition = .bottom
-
+        
         // title of graph
         chartView.chartDescription?.text = ""
         // padding of graph
@@ -69,7 +95,7 @@ class logViewController: UIViewController {
         chartView.extraRightOffset  = 20.0
         chartView.extraBottomOffset = 10.0
         chartView.extraLeftOffset   =  0.0
-
+        
         // set values to x-axis
         chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: days)
         chartView.xAxis.granularity = 1
@@ -78,6 +104,7 @@ class logViewController: UIViewController {
         for (i, d) in weight.enumerated() {
             entries.append(ChartDataEntry(x: Double(i), y: d))
         }
+        
         let dataset = LineChartDataSet(values: entries, label: "Data")
         // hide the values over points
         dataset.drawValuesEnabled = false
@@ -86,15 +113,8 @@ class logViewController: UIViewController {
         dataset.circleRadius = 4.0
         dataset.colors = [UIColor.black]
         chartView.data = LineChartData(dataSet: dataset)
+        
 
-        self.view.addSubview(chartView)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //self.chartView.reloadInputViews()
         
     }
     

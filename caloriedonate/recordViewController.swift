@@ -29,19 +29,23 @@ class recordViewController: UIViewController {
         
         let viewContext = self.appDelegate.persistentContainer.viewContext
         let weightdata = NSEntityDescription.entity(forEntityName: "WeightData", in: viewContext)
-        
-        // create record
-        let newRecord = NSManagedObject(entity: weightdata!, insertInto: viewContext)
-        newRecord.setValue(Date(), forKey: "date")
-        newRecord.setValue(70.1, forKey: "weight")
-        do {
-            try viewContext.save()
-        } catch {
-            //
-        }
-
-        // fetch record
         let fetchRequest: NSFetchRequest<WeightData> = WeightData.fetchRequest()
+
+        /*
+        // create record
+        for i in 1 ..< 6 {
+            let newRecord = NSManagedObject(entity: weightdata!, insertInto: viewContext)
+            newRecord.setValue(Date(timeInterval: 86400 * Double(i), since: Date()), forKey: "date")
+            newRecord.setValue(70.1, forKey: "weight")
+            do {
+                try viewContext.save()
+            } catch {
+                //
+            }
+        }
+         */
+        /*
+        // fetch record
         do {
             let results = try viewContext.fetch(fetchRequest)
             for result in results {
@@ -52,7 +56,6 @@ class recordViewController: UIViewController {
             //
         }
         
-        /*
         // update record
         do {
             let results = try viewContext.fetch(fetchRequest)
@@ -64,24 +67,22 @@ class recordViewController: UIViewController {
         } catch {
             //
         }
-         */
-        
+ 
         // delete record
         do {
             let results = try viewContext.fetch(fetchRequest)
             for result in results {
                 let record = result
-                if result.date! as Date > Date(timeInterval: -60, since: Date()) {
-                    //
-                } else {
-                    viewContext.delete(record)
-                }
+                viewContext.delete(record)
                 try viewContext.save()
             }
         } catch {
             //
         }
-        
+         */
+
+ 
+        //let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         
     }
     

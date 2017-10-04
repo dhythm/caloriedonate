@@ -17,5 +17,5 @@ public class WeightData: NSManagedObject {
         self.created_at = NSDate()
         self.updated_at = NSDate()
     }
-    
+
 }
