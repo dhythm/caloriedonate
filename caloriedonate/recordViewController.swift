@@ -3,9 +3,14 @@ import Foundation
 import UIKit
 import CoreData
 
-class recordViewController: UIViewController {
+class recordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    private let dateArray: NSArray = ["1","2","3"]
+    
+    private var addButton: UIButton!
+    let diameter: CGFloat = 40
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -31,6 +36,40 @@ class recordViewController: UIViewController {
         let weightdata = NSEntityDescription.entity(forEntityName: "WeightData", in: viewContext)
         let fetchRequest: NSFetchRequest<WeightData> = WeightData.fetchRequest()
 
+        
+        let hStatusBar: CGFloat = UIApplication.shared.statusBarFrame.size.height
+        let hNavBar: CGFloat = self.navigationController!.navigationBar.frame.size.height
+        
+        let tableView: UITableView = UITableView(frame: CGRect(x: 0, y: hStatusBar + hNavBar, width: UIScreen.main.bounds.width, height: self.view.frame.height - (hStatusBar + hNavBar)))
+        
+        addButton = UIButton()
+        let bw: CGFloat = diameter
+        let bh: CGFloat = diameter
+        let posX: CGFloat = self.view.frame.width/2 - bw/2
+        let posY: CGFloat = self.view.frame.height/2 - bh/2
+        
+        addButton.frame = CGRect(x: posX, y: posY, width: bw, height: bh)
+        addButton.layer.masksToBounds = true
+        addButton.layer.cornerRadius = diameter/2.0
+        let addImage = UIImage.imageFromSystemBarButton(.add).withRenderingMode(.alwaysTemplate)
+        addButton.setImage(addImage, for: .normal)
+        addButton.tintColor = UIColor.init(red: 0, green: 122/255.0, blue: 255/255.0, alpha: 1.0)
+        //addButton.setBackgroundImage(<#T##image: UIImage?##UIImage?#>, for: .highlighted)
+        addButton.addTarget(self, action: #selector(recordViewController.onClickAddButton(sender:)), for: .touchUpInside)
+
+        let addNavButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(recordViewController.onClickAddButton(sender:)))
+        
+        // setting for navigation bar
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let dateString = dateFormatter.string(from: Date())
+        self.navigationItem.title = dateString
+        
+        self.navigationItem.rightBarButtonItem = addNavButton
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        //self.view.addSubview(addButton)
+        
         /*
         // create record
         for i in 1 ..< 6 {
@@ -88,6 +127,32 @@ class recordViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // NavigationBarを表示したい場合
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    internal func onClickAddButton(sender: UIButton){
+
+        let destinationViewController: UIViewController = inputDataViewController()
+        destinationViewController.hidesBottomBarWhenPushed = true
+        
+        self.navigationController?.pushViewController(destinationViewController, animated: true)
+        
     }
     
 }

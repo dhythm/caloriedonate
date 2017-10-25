@@ -25,15 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabRecord: UIViewController = recordViewController()
         let tabLog: UIViewController = logViewController()
         let tabSetting: UIViewController = settingViewController()
-                
-        let tabBar = NSArray(objects: tabMain, tabRecord, tabLog, tabSetting)
+
+        // create instance for navigation bar
+        let appNavigationController = UINavigationController(rootViewController: recordViewController())
+        
+        let tabBar = NSArray(objects: tabMain, appNavigationController, tabLog, tabSetting)
         let tabBarController: UITabBarController = UITabBarController()
         
-
         tabBarController.setViewControllers(tabBar as? [UIViewController
             ], animated: false)
         tabBarController.selectedIndex = 0
-    
+
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = tabBarController
         self.window!.makeKeyAndVisible()
