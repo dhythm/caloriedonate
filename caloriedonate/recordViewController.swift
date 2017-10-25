@@ -7,7 +7,9 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    private let dateArray: NSArray = ["1","2","3"]
+    //private var dataArray = [String]()
+    private var dataArray = ["test1","test2","test3"]
+    private var tableView: UITableView!
     
     private var addButton: UIButton!
     let diameter: CGFloat = 40
@@ -35,7 +37,10 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let hStatusBar: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let hNavBar: CGFloat = self.navigationController!.navigationBar.frame.size.height
         
-        let tableView: UITableView = UITableView(frame: CGRect(x: 0, y: hStatusBar + hNavBar, width: UIScreen.main.bounds.width, height: self.view.frame.height - (hStatusBar + hNavBar)))
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.view.frame.height - hStatusBar))
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dataCell")
+        tableView.dataSource = self
+        tableView.delegate = self
         
         addButton = UIButton()
         let bw: CGFloat = diameter
@@ -63,6 +68,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationItem.rightBarButtonItem = addNavButton
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
+        self.view.addSubview(tableView)
         //self.view.addSubview(addButton)
         //let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         
@@ -101,13 +107,17 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         do {
             let results = try viewContext.fetch(fetchRequest)
             for result in results {
-                print("\(dateFormatter.string(from: result.date as! Date))")
-                print("\(result.name)")
-                print("\(result.calorie)")
+                //dataArray.append(result.name!)
+                dataArray[0] = result.name!
+                //for i in 0 ..< results.count {
+                print("date   :\(dateFormatter.string(from: result.date as! Date))")
+                print("name   :\(result.name!)")
+                print("calorie:\(result.calorie)")
             }
         } catch {
             //
         }
+        
         /*
          // update record
          do {
@@ -143,15 +153,24 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Num: \(indexPath.row)")
+        print("Value: \(dataArray[indexPath.row])")
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("dataArray.count: \(dataArray.count)")
+        return dataArray.count
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath)
+        cell.textLabel!.text = "\(dataArray[indexPath.row])"
+        print("cell.textLabel!.text: \(cell.textLabel!.text)")
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
+
     
     internal func onClickAddButton(sender: UIButton){
 
