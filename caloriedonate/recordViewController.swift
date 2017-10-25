@@ -32,11 +32,6 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let bgColor: UIColor = UIColor.init(red: 245, green: 245, blue: 245, alpha: 1.0)
         self.view.backgroundColor = bgColor
         
-        let viewContext = self.appDelegate.persistentContainer.viewContext
-        let weightdata = NSEntityDescription.entity(forEntityName: "WeightData", in: viewContext)
-        let fetchRequest: NSFetchRequest<WeightData> = WeightData.fetchRequest()
-
-        
         let hStatusBar: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let hNavBar: CGFloat = self.navigationController!.navigationBar.frame.size.height
         
@@ -69,44 +64,64 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         //self.view.addSubview(addButton)
+        //let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let viewContext = self.appDelegate.persistentContainer.viewContext
+        //let weightdata = NSEntityDescription.entity(forEntityName: "WeightData", in: viewContext)
+        let dietdata = NSEntityDescription.entity(forEntityName: "DietData", in: viewContext)
+        let fetchRequest: NSFetchRequest<DietData> = DietData.fetchRequest()
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         
         /*
-        // create record
-        for i in 1 ..< 6 {
-            let newRecord = NSManagedObject(entity: weightdata!, insertInto: viewContext)
-            newRecord.setValue(Date(timeInterval: 86400 * Double(i), since: Date()), forKey: "date")
-            newRecord.setValue(70.1, forKey: "weight")
-            do {
-                try viewContext.save()
-            } catch {
-                //
-            }
-        }
+         // create record
+         for i in 1 ..< 6 {
+         let newRecord = NSManagedObject(entity: weightdata!, insertInto: viewContext)
+         newRecord.setValue(Date(timeInterval: 86400 * Double(i), since: Date()), forKey: "date")
+         newRecord.setValue(70.1, forKey: "weight")
+         do {
+         try viewContext.save()
+         } catch {
+         //
+         }
+         }
          */
-        /*
+        
         // fetch record
         do {
             let results = try viewContext.fetch(fetchRequest)
             for result in results {
-                print("\(result.date!)")
-                print("\(result.weight)")
+                print("\(dateFormatter.string(from: result.date as! Date))")
+                print("\(result.name)")
+                print("\(result.calorie)")
             }
         } catch {
             //
         }
+        /*
+         // update record
+         do {
+         let results = try viewContext.fetch(fetchRequest)
+         for result in results {
+         let record = result
+         record.setValue(Date(), forKey: "date")
+         }
+         try viewContext.save()
+         } catch {
+         //
+         }
+         */
         
-        // update record
-        do {
-            let results = try viewContext.fetch(fetchRequest)
-            for result in results {
-                let record = result
-                record.setValue(Date(), forKey: "date")
-            }
-            try viewContext.save()
-        } catch {
-            //
-        }
- 
         // delete record
         do {
             let results = try viewContext.fetch(fetchRequest)
@@ -118,15 +133,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             //
         }
-         */
 
- 
-        //let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     override func viewDidAppear(_ animated: Bool) {
