@@ -7,8 +7,8 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    //private var dataArray = [String]()
-    private var dataArray = ["test1","test2","test3"]
+    private var dataArray = [String]()
+    //private var dataArray = ["test1","test2","test3"]
     private var tableView: UITableView!
     
     private var addButton: UIButton!
@@ -106,14 +106,18 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // fetch record
         do {
             let results = try viewContext.fetch(fetchRequest)
+            dataArray.removeAll()
+            for i in 0 ..< results.count {
+                dataArray.append(results[i].name!)
+            }
+            /*
             for result in results {
-                //dataArray.append(result.name!)
-                dataArray[0] = result.name!
-                //for i in 0 ..< results.count {
+                dataArray.append(result.name!)
                 print("date   :\(dateFormatter.string(from: result.date as! Date))")
                 print("name   :\(result.name!)")
                 print("calorie:\(result.calorie)")
             }
+            */
         } catch {
             //
         }
@@ -132,6 +136,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
          }
          */
         
+        /*
         // delete record
         do {
             let results = try viewContext.fetch(fetchRequest)
@@ -143,7 +148,10 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             //
         }
-
+        */
+        
+        tableView.reloadData()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
