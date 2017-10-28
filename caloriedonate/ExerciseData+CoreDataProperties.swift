@@ -16,6 +16,7 @@ extension ExerciseData {
         return NSFetchRequest<ExerciseData>(entityName: "ExerciseData");
     }
 
+    @NSManaged public var uuid: NSString?
     @NSManaged public var date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var calorie: Float

@@ -7,12 +7,19 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    private var dataArray = [String]()
-    //private var dataArray = ["test1","test2","test3"]
+    private var uuidArray = [String]()
+    private var dateArray = [Date]()
+    private var nameArray = [String]()
+    private var calorieArray  = [Float]()
+    private var tzArray = [Int16]()
     private var tableView: UITableView!
     
     private var addButton: UIButton!
     let diameter: CGFloat = 40
+
+    var viewContext: NSManagedObjectContext!
+    var dietdata: NSEntityDescription!
+    var fetchRequest: NSFetchRequest<DietData>!
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -30,6 +37,9 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewContext = self.appDelegate.persistentContainer.viewContext
+        dietdata = NSEntityDescription.entity(forEntityName: "DietData", in: viewContext)
+        
         // setting for background
         let bgColor: UIColor = UIColor.init(red: 245, green: 245, blue: 245, alpha: 1.0)
         self.view.backgroundColor = bgColor
@@ -38,7 +48,10 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let hNavBar: CGFloat = self.navigationController!.navigationBar.frame.size.height
         
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.view.frame.height - hStatusBar))
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dataCell")
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "dataCell")
+        //tableView.register(customCell.self, forCellReuseIdentifier: NSStringFromClass(customCell.self))
+        tableView.register(customCell.self, forCellReuseIdentifier: "dataCell")
+        tableView.separatorInset = UIEdgeInsets.zero
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -81,10 +94,10 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let viewContext = self.appDelegate.persistentContainer.viewContext
         //let weightdata = NSEntityDescription.entity(forEntityName: "WeightData", in: viewContext)
-        let dietdata = NSEntityDescription.entity(forEntityName: "DietData", in: viewContext)
-        let fetchRequest: NSFetchRequest<DietData> = DietData.fetchRequest()
+        //let dietdata = NSEntityDescription.entity(forEntityName: "DietData", in: viewContext)
+        //let fetchRequest: NSFetchRequest<DietData> = DietData.fetchRequest()
+        fetchRequest = DietData.fetchRequest()
         
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -106,18 +119,18 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // fetch record
         do {
             let results = try viewContext.fetch(fetchRequest)
-            dataArray.removeAll()
+            uuidArray.removeAll()
+            dateArray.removeAll()
+            nameArray.removeAll()
+            calorieArray.removeAll()
+            tzArray.removeAll()
             for i in 0 ..< results.count {
-                dataArray.append(results[i].name!)
+                uuidArray.append(results[i].uuid! as String)
+                dateArray.append(results[i].date! as Date)
+                nameArray.append(results[i].name!)
+                calorieArray.append(results[i].calorie)
+                tzArray.append(results[i].timezone)
             }
-            /*
-            for result in results {
-                dataArray.append(result.name!)
-                print("date   :\(dateFormatter.string(from: result.date as! Date))")
-                print("name   :\(result.name!)")
-                print("calorie:\(result.calorie)")
-            }
-            */
         } catch {
             //
         }
@@ -136,20 +149,6 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
          }
          */
         
-        /*
-        // delete record
-        do {
-            let results = try viewContext.fetch(fetchRequest)
-            for result in results {
-                let record = result
-                viewContext.delete(record)
-                try viewContext.save()
-            }
-        } catch {
-            //
-        }
-        */
-        
         tableView.reloadData()
         
     }
@@ -163,20 +162,64 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(dataArray[indexPath.row])")
+        /*
+        print("----------------------------------------")
+        print("Num  : \(indexPath.row)")
+        print("UUID : \(uuidArray[indexPath.row])")
+        print("Date : \(dateArray[indexPath.row])")
+        print("Name : \(nameArray[indexPath.row])")
+        print("Value: \(calorieArray[indexPath.row])")
+         */
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("dataArray.count: \(dataArray.count)")
-        return dataArray.count
+        return uuidArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath)
-        cell.textLabel!.text = "\(dataArray[indexPath.row])"
-        print("cell.textLabel!.text: \(cell.textLabel!.text)")
+        cell.textLabel!.text = "\(nameArray[indexPath.row])"
+         */
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath) as! customCell
+        //cell.layoutMargins = UIEdgeInsets.init(top: 0.0, left: 50.0, bottom: 0.0, right: 50.0)
+        //cell.layoutMargins = UIEdgeInsets(top: 50.0, left: 50.0, bottom: 0.0, right: 50.0)
+        cell.name.text = "\(nameArray[indexPath.row])"
+        cell.calorie.text = "\(calorieArray[indexPath.row])"
         
         return cell
+    }
+    // section
+    /*
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> String? {
+        
+    }
+     */
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let uuid = uuidArray[indexPath.row]
+            
+            uuidArray.remove(at: indexPath.row)
+            dateArray.remove(at: indexPath.row)
+            nameArray.remove(at: indexPath.row)
+            calorieArray.remove(at: indexPath.row)
+            tzArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // delete record
+            do {
+                fetchRequest.predicate = NSPredicate(format: "uuid = '\(uuid)'")
+                let results = try viewContext.fetch(fetchRequest)
+                for result in results {
+                    let record = result
+                    viewContext.delete(record)
+                    try viewContext.save()
+                }
+            } catch {
+                //
+            }
+        }
     }
 
     

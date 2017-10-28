@@ -16,6 +16,7 @@ extension DietData {
         return NSFetchRequest<DietData>(entityName: "DietData");
     }
 
+    @NSManaged public var uuid: NSString?
     @NSManaged public var date: NSDate?
     @NSManaged public var name: String?
     @NSManaged public var calorie: Float

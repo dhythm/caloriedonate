@@ -16,6 +16,7 @@ extension WeightData {
         return NSFetchRequest<WeightData>(entityName: "WeightData");
     }
 
+    @NSManaged public var uuid: NSString?
     @NSManaged public var date: NSDate?
     @NSManaged public var weight: Float
     @NSManaged public var created_at: NSDate?
