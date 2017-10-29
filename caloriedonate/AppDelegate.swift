@@ -78,6 +78,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = NSPersistentContainer(name: "LogModel")
+        
+        let storeUrl  = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("LogModel.sqlite")
+        guard let modelUrl = Bundle.main.url(forResource: "LogModel", withExtension: "momd") else {
+            fatalError("Error loading model from bundle")
+        }
+        print(storeUrl)
+
+        let description = NSPersistentStoreDescription(url: storeUrl)
+        description.shouldInferMappingModelAutomatically = true
+        description.shouldMigrateStoreAutomatically = true
+        container.persistentStoreDescriptions = [description]
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

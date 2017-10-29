@@ -3,18 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34080D0917660A6B394606DF /* Pods_caloriedonate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D29A5334C9254E5D7993FDE /* Pods_caloriedonate.framework */; };
+		41F6DBA31E13A0A1A0EF7190 /* Pods_caloriedonateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4540553D3419A36F132D48CA /* Pods_caloriedonateTests.framework */; };
+		945F60A5E55D332FD4AA3EED /* Pods_caloriedonateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3D21B23FB31BC3A0EC7A15 /* Pods_caloriedonateUITests.framework */; };
+		D7467C671F820FBD008E19FF /* drawCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C661F820FBD008E19FF /* drawCircleView.swift */; };
+		D7467C691F823DDE008E19FF /* logViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C681F823DDE008E19FF /* logViewController.swift */; };
+		D7467C6B1F823F41008E19FF /* recordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C6A1F823F41008E19FF /* recordViewController.swift */; };
+		D7467C6E1F8252B3008E19FF /* LogModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7467C6C1F8252B3008E19FF /* LogModel.xcdatamodeld */; };
+		D7467C871F825A11008E19FF /* WeightData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C811F825A11008E19FF /* WeightData+CoreDataClass.swift */; };
+		D7467C881F825A11008E19FF /* WeightData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C821F825A11008E19FF /* WeightData+CoreDataProperties.swift */; };
+		D7467C891F825A11008E19FF /* DietData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C831F825A11008E19FF /* DietData+CoreDataClass.swift */; };
+		D7467C8A1F825A11008E19FF /* DietData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C841F825A11008E19FF /* DietData+CoreDataProperties.swift */; };
+		D7467C8B1F825A11008E19FF /* ExerciseData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C851F825A11008E19FF /* ExerciseData+CoreDataClass.swift */; };
+		D7467C8C1F825A11008E19FF /* ExerciseData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7467C861F825A11008E19FF /* ExerciseData+CoreDataProperties.swift */; };
 		D74BA8241F80ACB60060C4E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74BA8231F80ACB60060C4E9 /* AppDelegate.swift */; };
 		D74BA8261F80ACB60060C4E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74BA8251F80ACB60060C4E9 /* ViewController.swift */; };
-		D74BA8291F80ACB60060C4E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D74BA8271F80ACB60060C4E9 /* Main.storyboard */; };
 		D74BA82C1F80ACB60060C4E9 /* caloriedonate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D74BA82A1F80ACB60060C4E9 /* caloriedonate.xcdatamodeld */; };
-		D74BA82E1F80ACB60060C4E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D74BA82D1F80ACB60060C4E9 /* Assets.xcassets */; };
-		D74BA8311F80ACB60060C4E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D74BA82F1F80ACB60060C4E9 /* LaunchScreen.storyboard */; };
 		D74BA83C1F80ACB60060C4E9 /* caloriedonateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74BA83B1F80ACB60060C4E9 /* caloriedonateTests.swift */; };
 		D74BA8471F80ACB60060C4E9 /* caloriedonateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74BA8461F80ACB60060C4E9 /* caloriedonateUITests.swift */; };
+		D792CD1E1F80B22900C7E196 /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D792CD1B1F80B22900C7E196 /* mainViewController.swift */; };
+		D7A098831F8535F10013A02D /* settingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A098821F8535F10013A02D /* settingViewController.swift */; };
+		D7A098851FA059360013A02D /* UIImage+imageFromSystemBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A098841FA059360013A02D /* UIImage+imageFromSystemBarButton.swift */; };
+		D7A098871FA0647A0013A02D /* inputDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A098861FA0647A0013A02D /* inputDataViewController.swift */; };
+		D7A3341C1FA4BDBF0025C7C8 /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A3341B1FA4BDBF0025C7C8 /* customCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +50,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D29A5334C9254E5D7993FDE /* Pods_caloriedonate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_caloriedonate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21AA19F74EFCA6DBCB7159A5 /* Pods-caloriedonate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caloriedonate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caloriedonate/Pods-caloriedonate.debug.xcconfig"; sourceTree = "<group>"; };
+		4407F18BCB92FC37CE93ECB0 /* Pods-caloriedonate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caloriedonate.release.xcconfig"; path = "Pods/Target Support Files/Pods-caloriedonate/Pods-caloriedonate.release.xcconfig"; sourceTree = "<group>"; };
+		4540553D3419A36F132D48CA /* Pods_caloriedonateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_caloriedonateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		962CA6B716BDEE6D0B05A6EF /* Pods-caloriedonateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caloriedonateUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-caloriedonateUITests/Pods-caloriedonateUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B4E77FC16E20D3FBEEE6CB42 /* Pods-caloriedonateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caloriedonateUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caloriedonateUITests/Pods-caloriedonateUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BC3D21B23FB31BC3A0EC7A15 /* Pods_caloriedonateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_caloriedonateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9F2A4147F0F280B9CCCEC21 /* Pods-caloriedonateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caloriedonateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caloriedonateTests/Pods-caloriedonateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7467C661F820FBD008E19FF /* drawCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawCircleView.swift; sourceTree = "<group>"; };
+		D7467C681F823DDE008E19FF /* logViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logViewController.swift; sourceTree = "<group>"; };
+		D7467C6A1F823F41008E19FF /* recordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recordViewController.swift; sourceTree = "<group>"; };
+		D7467C6D1F8252B3008E19FF /* LogModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LogModel.xcdatamodel; sourceTree = "<group>"; };
+		D7467C811F825A11008E19FF /* WeightData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeightData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D7467C821F825A11008E19FF /* WeightData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeightData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D7467C831F825A11008E19FF /* DietData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DietData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D7467C841F825A11008E19FF /* DietData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DietData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D7467C851F825A11008E19FF /* ExerciseData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D7467C861F825A11008E19FF /* ExerciseData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExerciseData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D74BA8201F80ACB60060C4E9 /* caloriedonate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = caloriedonate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D74BA8231F80ACB60060C4E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D74BA8251F80ACB60060C4E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D74BA8281F80ACB60060C4E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D74BA82B1F80ACB60060C4E9 /* caloriedonate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = caloriedonate.xcdatamodel; sourceTree = "<group>"; };
-		D74BA82D1F80ACB60060C4E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D74BA8301F80ACB60060C4E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D74BA8321F80ACB60060C4E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D74BA8371F80ACB60060C4E9 /* caloriedonateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = caloriedonateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D74BA83B1F80ACB60060C4E9 /* caloriedonateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caloriedonateTests.swift; sourceTree = "<group>"; };
@@ -49,6 +79,13 @@
 		D74BA8421F80ACB60060C4E9 /* caloriedonateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = caloriedonateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D74BA8461F80ACB60060C4E9 /* caloriedonateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caloriedonateUITests.swift; sourceTree = "<group>"; };
 		D74BA8481F80ACB60060C4E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D792CD1B1F80B22900C7E196 /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
+		D7A098821F8535F10013A02D /* settingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingViewController.swift; sourceTree = "<group>"; };
+		D7A098841FA059360013A02D /* UIImage+imageFromSystemBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageFromSystemBarButton.swift"; sourceTree = "<group>"; };
+		D7A098861FA0647A0013A02D /* inputDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = inputDataViewController.swift; sourceTree = "<group>"; };
+		D7A3341B1FA4BDBF0025C7C8 /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
+		D7DECFD01F8277CE004C41E9 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/caloriedonate-cbcixecabrpiuffmukrsnbebbwip/Build/Products/Debug-iphonesimulator/Charts/Charts.framework"; sourceTree = "<group>"; };
+		DA9DF610CF8B86153A2FA44F /* Pods-caloriedonateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caloriedonateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-caloriedonateTests/Pods-caloriedonateTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34080D0917660A6B394606DF /* Pods_caloriedonate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F6DBA31E13A0A1A0EF7190 /* Pods_caloriedonateTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +109,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945F60A5E55D332FD4AA3EED /* Pods_caloriedonateUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16DA0747DC888EB70EE60FDA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21AA19F74EFCA6DBCB7159A5 /* Pods-caloriedonate.debug.xcconfig */,
+				4407F18BCB92FC37CE93ECB0 /* Pods-caloriedonate.release.xcconfig */,
+				C9F2A4147F0F280B9CCCEC21 /* Pods-caloriedonateTests.debug.xcconfig */,
+				DA9DF610CF8B86153A2FA44F /* Pods-caloriedonateTests.release.xcconfig */,
+				B4E77FC16E20D3FBEEE6CB42 /* Pods-caloriedonateUITests.debug.xcconfig */,
+				962CA6B716BDEE6D0B05A6EF /* Pods-caloriedonateUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		26E50993FA12EA38EECF38A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7DECFD01F8277CE004C41E9 /* Charts.framework */,
+				0D29A5334C9254E5D7993FDE /* Pods_caloriedonate.framework */,
+				4540553D3419A36F132D48CA /* Pods_caloriedonateTests.framework */,
+				BC3D21B23FB31BC3A0EC7A15 /* Pods_caloriedonateUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D74BA8171F80ACB50060C4E9 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +147,8 @@
 				D74BA83A1F80ACB60060C4E9 /* caloriedonateTests */,
 				D74BA8451F80ACB60060C4E9 /* caloriedonateUITests */,
 				D74BA8211F80ACB60060C4E9 /* Products */,
+				16DA0747DC888EB70EE60FDA /* Pods */,
+				26E50993FA12EA38EECF38A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +165,25 @@
 		D74BA8221F80ACB60060C4E9 /* caloriedonate */ = {
 			isa = PBXGroup;
 			children = (
+				D7467C811F825A11008E19FF /* WeightData+CoreDataClass.swift */,
+				D7467C821F825A11008E19FF /* WeightData+CoreDataProperties.swift */,
+				D7467C831F825A11008E19FF /* DietData+CoreDataClass.swift */,
+				D7467C841F825A11008E19FF /* DietData+CoreDataProperties.swift */,
+				D7467C851F825A11008E19FF /* ExerciseData+CoreDataClass.swift */,
+				D7467C861F825A11008E19FF /* ExerciseData+CoreDataProperties.swift */,
 				D74BA8231F80ACB60060C4E9 /* AppDelegate.swift */,
 				D74BA8251F80ACB60060C4E9 /* ViewController.swift */,
-				D74BA8271F80ACB60060C4E9 /* Main.storyboard */,
-				D74BA82D1F80ACB60060C4E9 /* Assets.xcassets */,
-				D74BA82F1F80ACB60060C4E9 /* LaunchScreen.storyboard */,
+				D7467C661F820FBD008E19FF /* drawCircleView.swift */,
+				D792CD1B1F80B22900C7E196 /* mainViewController.swift */,
 				D74BA8321F80ACB60060C4E9 /* Info.plist */,
 				D74BA82A1F80ACB60060C4E9 /* caloriedonate.xcdatamodeld */,
+				D7467C6A1F823F41008E19FF /* recordViewController.swift */,
+				D7467C681F823DDE008E19FF /* logViewController.swift */,
+				D7467C6C1F8252B3008E19FF /* LogModel.xcdatamodeld */,
+				D7A098821F8535F10013A02D /* settingViewController.swift */,
+				D7A098841FA059360013A02D /* UIImage+imageFromSystemBarButton.swift */,
+				D7A098861FA0647A0013A02D /* inputDataViewController.swift */,
+				D7A3341B1FA4BDBF0025C7C8 /* customCell.swift */,
 			);
 			path = caloriedonate;
 			sourceTree = "<group>";
@@ -135,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D74BA84B1F80ACB60060C4E9 /* Build configuration list for PBXNativeTarget "caloriedonate" */;
 			buildPhases = (
+				ACE76EAA1D0ED7A9FF29153F /* [CP] Check Pods Manifest.lock */,
 				D74BA81C1F80ACB50060C4E9 /* Sources */,
-				D74BA81D1F80ACB50060C4E9 /* Frameworks */,
 				D74BA81E1F80ACB50060C4E9 /* Resources */,
+				D74BA81D1F80ACB50060C4E9 /* Frameworks */,
+				E53A00DA26D4E53AF599BB13 /* [CP] Embed Pods Frameworks */,
+				0B34F47C3EF99E4480168E6E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D74BA84E1F80ACB60060C4E9 /* Build configuration list for PBXNativeTarget "caloriedonateTests" */;
 			buildPhases = (
+				260AFE7D46BCDE8E50C19456 /* [CP] Check Pods Manifest.lock */,
 				D74BA8331F80ACB60060C4E9 /* Sources */,
 				D74BA8341F80ACB60060C4E9 /* Frameworks */,
 				D74BA8351F80ACB60060C4E9 /* Resources */,
+				7EAAA47F442E49937BA21F65 /* [CP] Embed Pods Frameworks */,
+				676FD98EF51B451BF45B9C16 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +254,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D74BA8511F80ACB60060C4E9 /* Build configuration list for PBXNativeTarget "caloriedonateUITests" */;
 			buildPhases = (
+				E2E60649451BF25F4C40C18A /* [CP] Check Pods Manifest.lock */,
 				D74BA83E1F80ACB60060C4E9 /* Sources */,
 				D74BA83F1F80ACB60060C4E9 /* Frameworks */,
 				D74BA8401F80ACB60060C4E9 /* Resources */,
+				44C4B4DBDF84843C2CE5024E /* [CP] Embed Pods Frameworks */,
+				3EC42FF1F31DF2199489120C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,7 +298,7 @@
 				};
 			};
 			buildConfigurationList = D74BA81B1F80ACB50060C4E9 /* Build configuration list for PBXProject "caloriedonate" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -235,9 +322,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D74BA8311F80ACB60060C4E9 /* LaunchScreen.storyboard in Resources */,
-				D74BA82E1F80ACB60060C4E9 /* Assets.xcassets in Resources */,
-				D74BA8291F80ACB60060C4E9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +341,185 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B34F47C3EF99E4480168E6E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonate/Pods-caloriedonate-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		260AFE7D46BCDE8E50C19456 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-caloriedonateTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EC42FF1F31DF2199489120C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonateUITests/Pods-caloriedonateUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44C4B4DBDF84843C2CE5024E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonateUITests/Pods-caloriedonateUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		676FD98EF51B451BF45B9C16 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonateTests/Pods-caloriedonateTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EAAA47F442E49937BA21F65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonateTests/Pods-caloriedonateTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACE76EAA1D0ED7A9FF29153F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-caloriedonate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2E60649451BF25F4C40C18A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-caloriedonateUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E53A00DA26D4E53AF599BB13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonate/Pods-caloriedonate-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caloriedonate/Pods-caloriedonate-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D74BA81C1F80ACB50060C4E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7467C871F825A11008E19FF /* WeightData+CoreDataClass.swift in Sources */,
+				D7A098871FA0647A0013A02D /* inputDataViewController.swift in Sources */,
+				D7467C8A1F825A11008E19FF /* DietData+CoreDataProperties.swift in Sources */,
+				D7A098831F8535F10013A02D /* settingViewController.swift in Sources */,
+				D7467C6E1F8252B3008E19FF /* LogModel.xcdatamodeld in Sources */,
 				D74BA82C1F80ACB60060C4E9 /* caloriedonate.xcdatamodeld in Sources */,
+				D7467C891F825A11008E19FF /* DietData+CoreDataClass.swift in Sources */,
+				D7467C691F823DDE008E19FF /* logViewController.swift in Sources */,
+				D7A3341C1FA4BDBF0025C7C8 /* customCell.swift in Sources */,
+				D7467C6B1F823F41008E19FF /* recordViewController.swift in Sources */,
+				D7467C8C1F825A11008E19FF /* ExerciseData+CoreDataProperties.swift in Sources */,
 				D74BA8261F80ACB60060C4E9 /* ViewController.swift in Sources */,
+				D7A098851FA059360013A02D /* UIImage+imageFromSystemBarButton.swift in Sources */,
+				D792CD1E1F80B22900C7E196 /* mainViewController.swift in Sources */,
+				D7467C881F825A11008E19FF /* WeightData+CoreDataProperties.swift in Sources */,
 				D74BA8241F80ACB60060C4E9 /* AppDelegate.swift in Sources */,
+				D7467C8B1F825A11008E19FF /* ExerciseData+CoreDataClass.swift in Sources */,
+				D7467C671F820FBD008E19FF /* drawCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,25 +553,6 @@
 			targetProxy = D74BA8431F80ACB60060C4E9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D74BA8271F80ACB60060C4E9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D74BA8281F80ACB60060C4E9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D74BA82F1F80ACB60060C4E9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D74BA8301F80ACB60060C4E9 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D74BA8491F80ACB60060C4E9 /* Debug */ = {
@@ -414,8 +650,8 @@
 		};
 		D74BA84C1F80ACB60060C4E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21AA19F74EFCA6DBCB7159A5 /* Pods-caloriedonate.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = caloriedonate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dhythm.caloriedonate;
@@ -426,8 +662,8 @@
 		};
 		D74BA84D1F80ACB60060C4E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4407F18BCB92FC37CE93ECB0 /* Pods-caloriedonate.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = caloriedonate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dhythm.caloriedonate;
@@ -438,6 +674,7 @@
 		};
 		D74BA84F1F80ACB60060C4E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9F2A4147F0F280B9CCCEC21 /* Pods-caloriedonateTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -452,6 +689,7 @@
 		};
 		D74BA8501F80ACB60060C4E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA9DF610CF8B86153A2FA44F /* Pods-caloriedonateTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -466,6 +704,7 @@
 		};
 		D74BA8521F80ACB60060C4E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4E77FC16E20D3FBEEE6CB42 /* Pods-caloriedonateUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = caloriedonateUITests/Info.plist;
@@ -479,6 +718,7 @@
 		};
 		D74BA8531F80ACB60060C4E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 962CA6B716BDEE6D0B05A6EF /* Pods-caloriedonateUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = caloriedonateUITests/Info.plist;
@@ -509,6 +749,7 @@
 				D74BA84D1F80ACB60060C4E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D74BA84E1F80ACB60060C4E9 /* Build configuration list for PBXNativeTarget "caloriedonateTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +758,7 @@
 				D74BA8501F80ACB60060C4E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D74BA8511F80ACB60060C4E9 /* Build configuration list for PBXNativeTarget "caloriedonateUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,10 +767,21 @@
 				D74BA8531F80ACB60060C4E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		D7467C6C1F8252B3008E19FF /* LogModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D7467C6D1F8252B3008E19FF /* LogModel.xcdatamodel */,
+			);
+			currentVersion = D7467C6D1F8252B3008E19FF /* LogModel.xcdatamodel */;
+			path = LogModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		D74BA82A1F80ACB60060C4E9 /* caloriedonate.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
