@@ -60,7 +60,7 @@ class logViewController: UIViewController {
                 for i in 0 ..< results.count {
                     let df = DateFormatter()
                     df.dateFormat = "MM/dd"
-                    days.append(df.string(from: results[i].date! as Date))
+                    //days.append(df.string(from: results[i].date! as Date))
                     weight.append(Double(results[i].weight))
                 }
             }

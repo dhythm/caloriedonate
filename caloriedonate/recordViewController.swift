@@ -8,7 +8,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     private var uuidArray = [String]()
-    private var dateArray = [Date]()
+    private var dateArray = [String]()
     private var nameArray = [String]()
     private var calorieArray  = [Float]()
     private var tzArray = [Int16]()
@@ -126,7 +126,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tzArray.removeAll()
             for i in 0 ..< results.count {
                 uuidArray.append(results[i].uuid! as String)
-                dateArray.append(results[i].date! as Date)
+                //dateArray.append(results[i].date! as Date)
                 nameArray.append(results[i].name!)
                 calorieArray.append(results[i].calorie)
                 tzArray.append(results[i].timezone)

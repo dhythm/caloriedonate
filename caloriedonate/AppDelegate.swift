@@ -83,13 +83,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let modelUrl = Bundle.main.url(forResource: "LogModel", withExtension: "momd") else {
             fatalError("Error loading model from bundle")
         }
-        print(storeUrl)
-
+        print(modelUrl)
+        let managedObjectModel = NSManagedObjectModel(contentsOf: modelUrl)
+        let options = [NSMigratePersistentStoresAutomaticallyOption: true,
+                       NSInferMappingModelAutomaticallyOption: true]
+        let metadata = try! NSPersistentStoreCoordinator.metadataForPersistentStore(ofType: NSSQLiteStoreType, at: storeUrl, options: options)
+        print(managedObjectModel?.isConfiguration(withName: nil, compatibleWithStoreMetadata: metadata))
+        
+        /*
         let description = NSPersistentStoreDescription(url: storeUrl)
-        description.shouldInferMappingModelAutomatically = true
         description.shouldMigrateStoreAutomatically = true
+        description.shouldInferMappingModelAutomatically = true
         container.persistentStoreDescriptions = [description]
-
+         */
+        print("----- HEADER -----")
+        print("debug:\(container.persistentStoreDescriptions[0].type)")
+        print("debug:\(container.persistentStoreDescriptions[0].configuration)")
+        print("debug:\(container.persistentStoreDescriptions[0].url)")
+        print("debug:\(container.persistentStoreDescriptions[0].options)")
+        print("debug:\(container.persistentStoreDescriptions[0].isReadOnly)")
+        print("debug:\(container.persistentStoreDescriptions[0].timeout)")
+        print("debug:\(container.persistentStoreDescriptions[0].sqlitePragmas)")
+        print("debug:\(container.persistentStoreDescriptions[0].shouldAddStoreAsynchronously)")
+        print("debug:\(container.persistentStoreDescriptions[0].shouldMigrateStoreAutomatically)")
+        print("debug:\(container.persistentStoreDescriptions[0].shouldInferMappingModelAutomatically)")
+        print("----- FOOTER -----")
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
