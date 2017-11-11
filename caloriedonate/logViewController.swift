@@ -56,13 +56,11 @@ class logViewController: UIViewController {
             days.removeAll()
             weight.removeAll()
             let results = try viewContext.fetch(fetchRequest)
-            if let nilcheck = results.first!.date {
-                for i in 0 ..< results.count {
-                    let df = DateFormatter()
-                    df.dateFormat = "MM/dd"
-                    //days.append(df.string(from: results[i].date! as Date))
-                    weight.append(Double(results[i].weight))
-                }
+            for i in 0 ..< results.count {
+                let df = DateFormatter()
+                df.dateFormat = "MM/dd"
+                //days.append(df.string(from: results[i].date! as Date))
+                weight.append(Double(results[i].weight))
             }
         } catch {
             fatalError("Failed to fetch data: \(error)")
@@ -70,9 +68,11 @@ class logViewController: UIViewController {
 
         //
         chartView.backgroundColor = UIColor.white
-        chartView.leftAxis.axisMinimum = weight.min()! * 0.85
-        chartView.leftAxis.axisMaximum = weight.max()! * 1.15
-
+        if weight.count > 0 {
+            chartView.leftAxis.axisMinimum = weight.min()! * 0.85
+            chartView.leftAxis.axisMaximum = weight.max()! * 1.15
+        }
+            
         //
         chartView.legend.enabled = false
         chartView.pinchZoomEnabled = false
@@ -114,6 +114,19 @@ class logViewController: UIViewController {
         dataset.colors = [UIColor.black]
         chartView.data = LineChartData(dataSet: dataset)
         
+        /*
+         // create record
+         for i in 1 ..< 6 {
+         let newRecord = NSManagedObject(entity: weightdata!, insertInto: viewContext)
+         newRecord.setValue(Date(timeInterval: 86400 * Double(i), since: Date()), forKey: "date")
+         newRecord.setValue(70.1, forKey: "weight")
+         do {
+         try viewContext.save()
+         } catch {
+         //
+         }
+         }
+         */
 
         
     }

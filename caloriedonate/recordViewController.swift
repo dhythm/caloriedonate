@@ -12,7 +12,13 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var nameArray = [String]()
     private var calorieArray  = [Float]()
     private var tzArray = [Int16]()
+
     private var tableView: UITableView!
+
+    private var sectionArray = [String]()
+    private var numOfCellInSec = [Int]()
+    
+    var indexoffset: Int = 0
     
     private var addButton: UIButton!
     let diameter: CGFloat = 40
@@ -94,27 +100,16 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //let weightdata = NSEntityDescription.entity(forEntityName: "WeightData", in: viewContext)
-        //let dietdata = NSEntityDescription.entity(forEntityName: "DietData", in: viewContext)
-        //let fetchRequest: NSFetchRequest<DietData> = DietData.fetchRequest()
         fetchRequest = DietData.fetchRequest()
+        
+        indexoffset = 0
+        
+        // order by date
+        let sortDescripter = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescripter]
         
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        
-        /*
-         // create record
-         for i in 1 ..< 6 {
-         let newRecord = NSManagedObject(entity: weightdata!, insertInto: viewContext)
-         newRecord.setValue(Date(timeInterval: 86400 * Double(i), since: Date()), forKey: "date")
-         newRecord.setValue(70.1, forKey: "weight")
-         do {
-         try viewContext.save()
-         } catch {
-         //
-         }
-         }
-         */
         
         // fetch record
         do {
@@ -126,7 +121,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tzArray.removeAll()
             for i in 0 ..< results.count {
                 uuidArray.append(results[i].uuid! as String)
-                //dateArray.append(results[i].date! as Date)
+                dateArray.append(results[i].date! as String)
                 nameArray.append(results[i].name!)
                 calorieArray.append(results[i].calorie)
                 tzArray.append(results[i].timezone)
@@ -134,6 +129,10 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             //
         }
+        
+        // set table section
+        let orderedSet: NSOrderedSet = NSOrderedSet(array: dateArray)
+        sectionArray = orderedSet.array as! [String]
         
         /*
          // update record
@@ -160,54 +159,89 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-        print("----------------------------------------")
-        print("Num  : \(indexPath.row)")
-        print("UUID : \(uuidArray[indexPath.row])")
-        print("Date : \(dateArray[indexPath.row])")
-        print("Name : \(nameArray[indexPath.row])")
-        print("Value: \(calorieArray[indexPath.row])")
-         */
+    // Configuration of section
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionArray.count
     }
+    /*
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let headerLabel = UILabel(frame: CGRect(x: 5, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        return headerView
+
+    }
+     */
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionArray[section]
+    }
+    // Called when cell is selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //
+    }
+    // Configuration of table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return uuidArray.count
+        // initialize
+        numOfCellInSec.removeAll()
+        for i in 0 ..< sectionArray.count {
+            numOfCellInSec.append(dateArray.filter{ $0 == sectionArray[i] }.count)
+        }
+        return numOfCellInSec[section]
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath)
-        cell.textLabel!.text = "\(nameArray[indexPath.row])"
-         */
         let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath) as! customCell
-        //cell.layoutMargins = UIEdgeInsets.init(top: 0.0, left: 50.0, bottom: 0.0, right: 50.0)
-        //cell.layoutMargins = UIEdgeInsets(top: 50.0, left: 50.0, bottom: 0.0, right: 50.0)
-        cell.name.text = "\(nameArray[indexPath.row])"
-        cell.calorie.text = "\(calorieArray[indexPath.row])"
+        
+        // get first index-number for section
+        let first = dateArray.index(of: sectionArray[indexPath.section])!
+
+        if indexPath.row < first {
+            indexoffset = first
+        }
+        let index = indexPath.row + indexoffset
+        
+        print("----- debug(cellForRowAt) ----")
+        print("index       : \(index)")
+        print("indexPath   : \(indexPath)")
+        print("indexoffset : \(indexoffset)")
+        cell.name.text = "\(nameArray[index])"
+        cell.calorie.text = "\(calorieArray[index])"
+        print("----- debug END -----")
         
         return cell
     }
-    // section
-    /*
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> String? {
-        
-    }
-     */
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let uuid = uuidArray[indexPath.row]
+            var index = 0
+            for i in 0 ..< indexPath.section{
+                index += numOfCellInSec[i]
+            }
+            index += indexPath.row
+            let uuid = uuidArray[index]
             
-            uuidArray.remove(at: indexPath.row)
-            dateArray.remove(at: indexPath.row)
-            nameArray.remove(at: indexPath.row)
-            calorieArray.remove(at: indexPath.row)
-            tzArray.remove(at: indexPath.row)
+            print("----- debug(editingStyle) -----")
+            print("index     : \(index)")
+            print("indexPath : \(indexPath)")
+            uuidArray.remove(at: index)
+            dateArray.remove(at: index)
+            nameArray.remove(at: index)
+            calorieArray.remove(at: index)
+            tzArray.remove(at: index)
+
+            // delete rows in section
             tableView.deleteRows(at: [indexPath], with: .fade)
+            //numOfCellInSec[indexPath.section] -= 1
+            if numOfCellInSec[indexPath.section] == 0 {
+                // tableView.deleteSections(indexPath.section, with: .fade)
+                //numOfCellInSecArray[indexPath.section] = 0
+                print("delete setion : \(indexPath.section)")
+            }
+            print("----- debug END -----")
             
-            // delete record
+            // Delete record
+            /*
             do {
                 fetchRequest.predicate = NSPredicate(format: "uuid = '\(uuid)'")
                 let results = try viewContext.fetch(fetchRequest)
@@ -219,6 +253,7 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } catch {
                 //
             }
+            */
         }
     }
 

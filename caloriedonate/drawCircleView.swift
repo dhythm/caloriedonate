@@ -29,6 +29,8 @@ class drawCircleView: UIView {
         total = self.appDelegate._total
         goal  = self.appDelegate._goal
         
+        //print(super.total)
+        
         let cX: CGFloat = rect.size.width/2
         let cY: CGFloat = rect.size.height/2
         let circlePoint = CGPoint(x: cX, y: cY)

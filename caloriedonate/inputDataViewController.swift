@@ -204,7 +204,7 @@ class inputDataViewController: UIViewController, UIPickerViewDelegate {
         let dietdata = NSEntityDescription.entity(forEntityName: "DietData", in: viewContext)
         let newRecord = NSManagedObject(entity: dietdata!, insertInto: viewContext)
         newRecord.setValue(NSUUID().uuidString, forKey: "uuid")
-        newRecord.setValue(dateFormatter.date(from: tfDate.text!), forKey: "date")
+        newRecord.setValue(dateFormatter.string(from: dateFormatter.date(from: tfDate.text!)!), forKey: "date")
         newRecord.setValue(tfDiet.text, forKey: "name")
         newRecord.setValue(atof(tfCal.text), forKey: "calorie")
         do {
