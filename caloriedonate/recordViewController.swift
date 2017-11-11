@@ -7,15 +7,14 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    private var uuidArray = [String]()
     private var dateArray = [String]()
-    private var nameArray = [String]()
-    private var calorieArray  = [Float]()
-    private var tzArray = [Int16]()
+    private var uuidArray = [[String]]()
+    private var nameArray = [[String]]()
+    private var calorieArray  = [[Float]]()
+    private var tzArray = [[Int16]]()
 
     private var tableView: UITableView!
 
-    private var sectionArray = [String]()
     private var numOfCellInSec = [Int]()
     
     var indexoffset: Int = 0
@@ -111,42 +110,48 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         
-        // fetch record
+        // fetch 処理
         do {
+            
             let results = try viewContext.fetch(fetchRequest)
-            uuidArray.removeAll()
+
+            // 初期化
+            var previous = ""
+            var index = 0
+
             dateArray.removeAll()
+            uuidArray.removeAll()
             nameArray.removeAll()
             calorieArray.removeAll()
             tzArray.removeAll()
+
+            uuidArray.append([String]())
+            nameArray.append([String]())
+            calorieArray.append([Float]())
+            tzArray.append([Int16]())
+
+            
+            // fetch したデータを多次元配列に格納
             for i in 0 ..< results.count {
-                uuidArray.append(results[i].uuid! as String)
-                dateArray.append(results[i].date! as String)
-                nameArray.append(results[i].name!)
-                calorieArray.append(results[i].calorie)
-                tzArray.append(results[i].timezone)
+                if previous != results[i].date! as String {
+                    dateArray.append(results[i].date! as String)
+                    if i != 0 {
+                        uuidArray.append([String]())
+                        nameArray.append([String]())
+                        calorieArray.append([Float]())
+                        tzArray.append([Int16]())
+                        index += 1
+                    }
+                }
+                uuidArray[index].append(results[i].uuid! as String)
+                nameArray[index].append(results[i].name!)
+                calorieArray[index].append(results[i].calorie)
+                tzArray[index].append(results[i].timezone)
+                previous = results[i].date! as String
             }
         } catch {
             //
         }
-        
-        // set table section
-        let orderedSet: NSOrderedSet = NSOrderedSet(array: dateArray)
-        sectionArray = orderedSet.array as! [String]
-        
-        /*
-         // update record
-         do {
-         let results = try viewContext.fetch(fetchRequest)
-         for result in results {
-         let record = result
-         record.setValue(Date(), forKey: "date")
-         }
-         try viewContext.save()
-         } catch {
-         //
-         }
-         */
         
         tableView.reloadData()
         
@@ -155,90 +160,67 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // NavigationBarを表示したい場合
+        // NavigationBar を表示したい場合
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    // Configuration of section
+    // セクションの数を返却
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionArray.count
+        return dateArray.count
     }
-    /*
+    // セクションのタイトルを設定
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        let headerLabel = UILabel(frame: CGRect(x: 5, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.sizeToFit()
-        headerView.addSubview(headerLabel)
-        return headerView
-
+        let label = UILabel()
+        //let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width, height: 10))
+        label.text = dateArray[section]
+        label.backgroundColor = UIColor.init(red: 247/255.0, green: 247/255.0, blue: 247/255.0, alpha: 1.0)
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: UIFontWeightRegular)
+        return label
     }
-     */
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionArray[section]
+        return dateArray[section]
     }
-    // Called when cell is selected
+ 
+    // セルが選択された際の設定
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
     }
-    // Configuration of table
+    // セクション内のセル数を返却
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // initialize
-        numOfCellInSec.removeAll()
-        for i in 0 ..< sectionArray.count {
-            numOfCellInSec.append(dateArray.filter{ $0 == sectionArray[i] }.count)
-        }
-        return numOfCellInSec[section]
+        return nameArray[section].count
     }
+    // セルの値を設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dataCell", for: indexPath) as! customCell
         
-        // get first index-number for section
-        let first = dateArray.index(of: sectionArray[indexPath.section])!
-
-        if indexPath.row < first {
-            indexoffset = first
-        }
-        let index = indexPath.row + indexoffset
-        
-        print("----- debug(cellForRowAt) ----")
-        print("index       : \(index)")
-        print("indexPath   : \(indexPath)")
-        print("indexoffset : \(indexoffset)")
-        cell.name.text = "\(nameArray[index])"
-        cell.calorie.text = "\(calorieArray[index])"
-        print("----- debug END -----")
+        cell.name.text    = "\(nameArray[indexPath.section][indexPath.row])"
+        cell.calorie.text = "\(calorieArray[indexPath.section][indexPath.row])"
+        cell.calorie.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: UIFontWeightRegular)
         
         return cell
     }
-    
+    // セルをスワイプで削除した際の処理
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            var index = 0
-            for i in 0 ..< indexPath.section{
-                index += numOfCellInSec[i]
-            }
-            index += indexPath.row
-            let uuid = uuidArray[index]
             
-            print("----- debug(editingStyle) -----")
-            print("index     : \(index)")
-            print("indexPath : \(indexPath)")
-            uuidArray.remove(at: index)
-            dateArray.remove(at: index)
-            nameArray.remove(at: index)
-            calorieArray.remove(at: index)
-            tzArray.remove(at: index)
-
-            // delete rows in section
+            var index = 0
+            let uuid = uuidArray[indexPath.section][indexPath.row]
+            
+            uuidArray[indexPath.section].remove(at: indexPath.row)
+            nameArray[indexPath.section].remove(at: indexPath.row)
+            calorieArray[indexPath.section].remove(at: indexPath.row)
+            tzArray[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            //numOfCellInSec[indexPath.section] -= 1
-            if numOfCellInSec[indexPath.section] == 0 {
-                // tableView.deleteSections(indexPath.section, with: .fade)
-                //numOfCellInSecArray[indexPath.section] = 0
-                print("delete setion : \(indexPath.section)")
+            
+            // セクションの全てのセルがなくなった場合の処理
+            if nameArray[indexPath.section].count == 0 {
+                dateArray.remove(at: indexPath.section)
+                uuidArray.remove(at: indexPath.section)
+                nameArray.remove(at: indexPath.section)
+                calorieArray.remove(at: indexPath.section)
+                tzArray.remove(at: indexPath.section)
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
             }
-            print("----- debug END -----")
             
             // Delete record
             /*
