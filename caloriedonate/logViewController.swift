@@ -22,7 +22,8 @@ class logViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 3)
+        //self.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 3)
+        self.tabBarItem = UITabBarItem(title: "Weight", image: #imageLiteral(resourceName: "icons8-accounting-60"), tag: 3)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,10 +41,11 @@ class logViewController: UIViewController {
         let bgColor: UIColor = UIColor.init(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0)
         self.view.backgroundColor = bgColor
 
+        /*
         chartView = LineChartView(frame: CGRect(x: 0, y: sbHeight, width: UIScreen.main.bounds.width, height: cHeight))
 
         self.view.addSubview(chartView)
-
+         */
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +68,7 @@ class logViewController: UIViewController {
             fatalError("Failed to fetch data: \(error)")
         }
 
+        /*
         //
         chartView.backgroundColor = UIColor.white
         if weight.count > 0 {
@@ -113,6 +116,8 @@ class logViewController: UIViewController {
         dataset.circleRadius = 4.0
         dataset.colors = [UIColor.black]
         chartView.data = LineChartData(dataSet: dataset)
+         */
+        
         
         /*
          // create record

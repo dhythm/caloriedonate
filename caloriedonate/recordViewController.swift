@@ -28,7 +28,9 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 2)
+        //self.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 2)
+        //self.tabBarItem = UITabBarItem(title: "Diet", image: #imageLiteral(resourceName: "icons8-save-as-30"), tag: 2)
+        self.tabBarItem = UITabBarItem(title: "Diet", image: #imageLiteral(resourceName: "icons8-calories-60"), tag: 2)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -103,12 +105,31 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         indexoffset = 0
         
+        let dateFormatter: DateFormatter = DateFormatter()
+        //dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale(identifier: "ja_JP"))
+        //dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale.current)
+
+        let date = Date()
+        let calendar = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!
+        let range = calendar.range(of: .day, in: .month, for: date)
+        //let lastDay = range.length
+        var comp = calendar.components([.year, .month, .day], from: date)
+        comp.day = 1
+        let firstday = calendar.date(from: comp)
+        comp.day = range.length
+        let lastday = calendar.date(from: comp)
+        
+        debugPrint(dateFormatter.string(from: firstday!))
+        debugPrint(dateFormatter.string(from: lastday!))
+
         // order by date
         let sortDescripter = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.sortDescriptors = [sortDescripter]
+        // fetch condition
+        //fetchRequest.predicate = NSPredicate(format: "date >= '\(dateFormatter.string(from: firstday!) )'")
+        //fetchRequest.predicate = NSPredicate(format: "calorie > 300")
         
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
         
         // fetch 処理
         do {
@@ -133,6 +154,8 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // fetch したデータを多次元配列に格納
             for i in 0 ..< results.count {
+                debugPrint(results[i].date!)
+                debugPrint(results[i].name!)
                 if previous != results[i].date! as String {
                     dateArray.append(results[i].date! as String)
                     if i != 0 {
@@ -223,7 +246,6 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             // Delete record
-            /*
             do {
                 fetchRequest.predicate = NSPredicate(format: "uuid = '\(uuid)'")
                 let results = try viewContext.fetch(fetchRequest)
@@ -235,7 +257,6 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } catch {
                 //
             }
-            */
         }
     }
 

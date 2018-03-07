@@ -24,12 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabMain: UIViewController = mainViewController()
         let tabRecord: UIViewController = recordViewController()
         let tabLog: UIViewController = logViewController()
-        let tabSetting: UIViewController = settingViewController()
 
         // create instance for navigation bar
         let appNavigationController = UINavigationController(rootViewController: recordViewController())
         
-        let tabBar = NSArray(objects: tabMain, appNavigationController, tabLog, tabSetting)
+        let tabBar = NSArray(objects: tabMain, appNavigationController, tabLog)
         let tabBarController: UITabBarController = UITabBarController()
         
         tabBarController.setViewControllers(tabBar as? [UIViewController

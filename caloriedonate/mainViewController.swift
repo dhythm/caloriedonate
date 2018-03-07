@@ -29,7 +29,8 @@ class mainViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
+        //self.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
+        self.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "icons8-home-60"), tag: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,6 +93,9 @@ class mainViewController: UIViewController {
 
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
+        //dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale(identifier: "ja_JP"))
+        //dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale.current)
+        
         let today = dateFormatter.string(from: Date())
         
         todayCal = 0.0

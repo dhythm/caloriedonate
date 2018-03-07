@@ -197,6 +197,7 @@ class inputDataViewController: UIViewController, UIPickerViewDelegate {
     internal func insertRecord() {
 
         let dateFormatter: DateFormatter = DateFormatter()
+        //dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale.current)
         dateFormatter.dateFormat = "yyyy/MM/dd"
 
         // create record
