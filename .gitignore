@@ -4,6 +4,6 @@ Podfile.lock
 */project.pbxproj
 */Info.plist
 
-caloriedonate.xcodeproj/*
+caloriedonate.xcodeproj
 caloriedonate.xcworkspace
 caloriedonate/caloriedonate.xcdatamodeld

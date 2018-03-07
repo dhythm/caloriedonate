@@ -120,8 +120,8 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         comp.day = range.length
         let lastday = calendar.date(from: comp)
         
-        debugPrint(dateFormatter.string(from: firstday!))
-        debugPrint(dateFormatter.string(from: lastday!))
+        //debugPrint(dateFormatter.string(from: firstday!))
+        //debugPrint(dateFormatter.string(from: lastday!))
 
         // order by date
         let sortDescripter = NSSortDescriptor(key: "date", ascending: true)
@@ -154,8 +154,6 @@ class recordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // fetch したデータを多次元配列に格納
             for i in 0 ..< results.count {
-                debugPrint(results[i].date!)
-                debugPrint(results[i].name!)
                 if previous != results[i].date! as String {
                     dateArray.append(results[i].date! as String)
                     if i != 0 {
